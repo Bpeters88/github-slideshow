@@ -1,0 +1,12 @@
+select 
+to_char(pickup_date, 'Day') as "Day of the Week",
+sum(total_carrier_cost)/count(*) as "average cost"
+FROM nfi_loads
+WHERE 
+    (1=1) 
+    AND nfi_loads.id IS NOT NULL
+	[[AND {{origin_state}}]]
+	[[AND {{destination_state}}]]
+	[[AND {{transport_type_customer}}]]
+	[[AND {{transport_type_customer}}]]
+GROUP BY to_char(pickup_date, 'Day');
