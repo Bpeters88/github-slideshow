@@ -8,5 +8,5 @@ WHERE
 	[[AND {{origin_state}}]]
 	[[AND {{destination_state}}]]
 	[[AND {{transport_type_customer}}]]
-	[[AND {{transport_type_customer}}]]
+	[[AND {{pickup_date}}]]
 GROUP BY to_char(pickup_date, 'Day');
