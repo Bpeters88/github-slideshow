@@ -1,0 +1,6 @@
+SELECT s.load_number AS "Relay Ref #",p.appointment_datetime, t.tendered_at AS "Tendered Date",  s.pickup_city, s.pickup_state, s.dest_city, s.dest_state, s.target_buy_predicted AS "Target Buy",s.quoted_price AS "Quoted Price", (s.quoted_price - s.target_buy_predicted)/ s.quoted_price AS "Markup %", s.created_at AS "Quote Timestamp", b.booked_at AS "Covered Date", (s.quoted_price - (b.booked_total_carrier_rate_amount/100)) AS "Margin", (((s.quoted_price - b.booked_total_carrier_rate_amount/100)/s.quoted_price) * 100) AS "Margin %"
+FROM spot_quotes s
+JOIN booking_projection b 
+ON CAST(s.load_number AS varchar) = CAST(b.relay_reference_number AS varchar)
+JOIN tendering_acceptance t
+ON CAST(s.load_number AS varchar) = CAST(t.relay_reference_number AS varchar)
