@@ -1,0 +1,7 @@
+SELECT pro_number AS "Pro",carrier, pickup_city, pickup_state,ship_date, consignee_city, consignee_state,delivered_date, shipment_type, delivered_date::DATE - ship_date::DATE AS "Days of Transit"
+FROM scr_data  
+WHERE (shipment_type LIKE 'ID' OR shipment_type LIKE 'IR')
+    AND (1=1) 
+    [[AND {{pickup_state}}]]
+	  [[AND {{consignee_state}}]]
+	  [[AND {{shipment_type}}]]
